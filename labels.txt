@@ -1,0 +1,12 @@
+__ignore__
+_background_
+new_building
+old_building
+public
+road
+car
+person
+sky
+green
+water
+culture
