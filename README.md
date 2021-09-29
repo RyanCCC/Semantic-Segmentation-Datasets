@@ -11,7 +11,7 @@
 
 4. 标记完成后保存的是json数据，路径在标记图像的目录下，接着需要将json文件转换成VOC格式。假设将转换的图像保存在buildings_VOC下。执行命令：python label2VOC.py buildings buildings_VOC --labels labels.txt。labels.txt就是你一开始编写的txt文件。
 
-   ![image-20210531115110407](./src/image-20210531115110407.png)
+![image-20210531115110407](https://user-images.githubusercontent.com/27406337/135209415-3773e2f6-e262-44dd-b956-2de0686626eb.png)
 
    label2VOC.py代码如下：
 
@@ -128,13 +128,13 @@
 
 5. 生成完成后的文件架构如下：JPEGImages保存的是原图。SegmentationClass保存的是npy的文件，是原图的标签，可以用于训练，如何训练.npy文件后面再研究。SegmentationClassPNG保存的是标签，是单通道的图像，以调色板格式保存的。SegmentationClassVisualization保存的是原图+标签，用于可是化打标签的结果。class_names.txt用于保存标签的类别。以JPEGImages下的20210531094423.jpg为例。原图、标签以及可视化图如下图所示。
     
-  ![image-20210531115110407](./src/image-20210531115219780.png)
+![image-20210531115219780](https://user-images.githubusercontent.com/27406337/135209499-9b6e2f7e-93f0-4427-a459-939b391d17a2.png)
       
-  ![image-20210531115110407](./src/image-20210531115128778.png)
+![image-20210531115128778](https://user-images.githubusercontent.com/27406337/135209501-64e11323-ee5b-4f85-aafd-fad5c8ea9d8d.png)
          
-  ![image-20210531115110407](./src/image-20210531115138232.png)
+![image-20210531115138232](https://user-images.githubusercontent.com/27406337/135209500-023d484a-b40f-436e-917d-cf9f8ea90e9b.png)
             
-  ![image-20210531115110407](./src/image-20210531115145596.png)
+![image-20210531115145596](https://user-images.githubusercontent.com/27406337/135209503-f2defc5b-ab26-4b79-8a4e-525b4789f934.png)
       
 
 6. 到此，可以说数据标签已经完毕了。可以使用JPEGImages下的图像作为原图，SegmentationClassPNG作为标签送入网络进行训练。但是我们一般用单通道，0,1,2,3表示类别，因此我们也可以再做一次转换，将SegmentationClassPNG转换成那种全黑的图。（这里我不太会表达。）修改一下ConvertVOC2Gray.py里面的图像的路径，然后执行文件即可。ConvertVOC2Gray.py主要修改以下代码（路径以及保存路径）：
@@ -228,13 +228,13 @@
 
    然后可以看到building_VOC下的labels文件夹有的标签图。虽然是全黑，但是通过np.unique可以看到有0,1两种类别的像素。到此我们的数据集已经制作完成了。
 
-   ![image-20210531115748487](./src/image-20210531115748487.png)
+![image-20210531115748487](https://user-images.githubusercontent.com/27406337/135209565-8e2bd8a7-4647-4972-b500-96e8725be8a4.png)
 
 7. 参考
 
-   https://github.com/wkentaro/labelme/tree/master/examples/semantic_segmentation
+https://github.com/wkentaro/labelme/tree/master/examples/semantic_segmentation
 
-   https://blog.csdn.net/Winters____/article/details/105659632
+https://blog.csdn.net/Winters____/article/details/105659632
 
 ## 制作实例分割数据集
 
